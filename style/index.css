@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+body {
+    font-family: 'Permanent Marker', cursive;
+    padding: 0;
+    margin: 0;
+    background-color: #C3E0E5;
+}
+
+img {
+    margin-left: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0px 20px 0px 0px;
+    padding: 0px;
+}
+
+nav {
+    font-size: x-large;
+    font-family: 'Permanent Marker', cursive;
+    background-color: #41729F;
+    text-align: left;
+    margin: 0;
+    padding: 5px 0px;
+    top: 0;
+    position: sticky;
+    box-shadow: 0px 3px 3px #5885AF;
+}
+
+button {
+    padding: 5px 30px;
+    margin: 0px 5px;
+    font-family: 'Permanent Marker', cursive;
+    color: #C3E0E5;
+    background-color: #5885AF;
+    border-color: #5885AF;
+    border-radius: 5px;
+    float: right;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #274472;
+    background-color: #C3E0E5;
+}
+
+nav a {
+    text-decoration: none;
+    color: #C3E0E5;
+}
+
+nav a:link, nav a:visited {
+    color: #C3E0E5;
+}
+
+nav a:hover {
+    color: #274472;
+}
+
+h2 {
+    color: #274472;
+    cursor: pointer;
+}
