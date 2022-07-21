@@ -4,11 +4,7 @@ body {
     font-family: 'Permanent Marker', cursive;
     padding: 0;
     margin: 0;
-    background-color: #C3E0E5;
-}
-
-img {
-    margin-left: 10px;
+    background-color: #fff;
 }
 
 ul {
@@ -31,11 +27,10 @@ nav {
     margin: 0;
     padding: 5px 0px;
     top: 0;
-    position: sticky;
     box-shadow: 0px 3px 3px #5885AF;
 }
 
-button {
+nav button {
     padding: 5px 30px;
     margin: 0px 5px;
     font-family: 'Permanent Marker', cursive;
@@ -47,7 +42,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+nav button:hover {
     color: #274472;
     background-color: #C3E0E5;
 }
@@ -65,7 +60,107 @@ nav a:hover {
     color: #274472;
 }
 
-h2 {
+label {
+    display: block;
     color: #274472;
+    font-size: x-large;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+label:hover {
     cursor: pointer;
+    color:#41729F;
+}
+
+#findProducts, #moreVisited, #newProducts, #onPromotion {
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+
+.foward {
+    width: 9.9%;
+    height: 36%;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    transform: translate(1385px, -270px);
+    background: linear-gradient(90deg, transparent, #274472);
+}
+
+.foward:hover {  
+    background: linear-gradient(90deg, transparent, #41729F);
+}
+
+.foward button{
+    font-family: 'Permanent Marker', cursive;
+    color: #C3E0E5;
+    background-color: #274472;
+    border-color: #274472;
+    position: absolute;
+    transform: translate(50px, 110px);
+    padding: 10px;
+    border-radius: 60%;
+    cursor: pointer;
+}
+
+.foward button:hover {
+    color: #274472;
+    background-color: #C3E0E5;
+    border-color: #C3E0E5;
+}
+
+.card {
+    width: 15%;
+    border-radius: 10px;
+    margin: 0px 5px;
+    display: inline-block;
+    background-color: #274472;
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.card:hover{
+    background-color: #41729F;
+    color:#C3E0E5;
+}
+
+.card a, a p {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;           /*remove a responsividade do texto, transformando em overflow*/
+    text-overflow: ellipsis;    /* coloca "..." no fim do overflow*/
+    white-space: nowrap;
+    display: block;
+    text-decoration: none;
+    color:#C3E0E5;
+}
+
+.card a img {
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 0;
+    align-self: center;
+}
+
+.card a p { /* Repetindo a classe para colocar espaço apenas no elemento p do card */
+    margin-left: 5px;
+}
+
+footer{
+    padding: 50px;
+    text-align: center;
+    display: block;
+}
+
+footer *{
+    display: inline-block;
+    text-decoration: none;
+}
+
+footer *:hover {
+    color:#41729F;
 }
