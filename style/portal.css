@@ -1,4 +1,4 @@
-#section {
+#welcome {
     opacity: 0.3;
     position: absolute;
     top: 50%;
@@ -26,4 +26,15 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#anunDelete {
+    padding-top: 1%;
+    width: 60%;
+    margin: 0 auto;
+    
+}
+
+.card {
+    width: 18rem;
 }
