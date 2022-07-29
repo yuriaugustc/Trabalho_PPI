@@ -1,3 +1,7 @@
+body {
+    background-color: #ddd;
+}
+
 #welcome {
     opacity: 0.3;
     position: absolute;
@@ -28,13 +32,21 @@ label {
     transform: translate(-50%, -50%);
 }
 
+#myAnuns {
+    padding: 1%;
+    margin: 0 auto;
+    
+}
+
 #anunDelete {
     padding-top: 1%;
-    width: 60%;
     margin: 0 auto;
     
 }
 
 .card {
+    background-color: #fff;
+    margin: 5px;
+    display: inline-block;
     width: 18rem;
 }
