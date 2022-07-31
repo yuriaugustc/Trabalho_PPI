@@ -36,7 +36,7 @@ anunD.addEventListener("click", ()=>{
 
 //edicao de perfil 
 perf.addEventListener("click", () => {
-    fetch("getPerfil.php")
+    fetch("getPerfil.php") // resgatando o dados do perfil utilizando o email guardado como variavel de sessao
     .then(response => response.json())
     .then(data => {
         document.getElementById("nome1").value = data.nome;
@@ -48,10 +48,17 @@ perf.addEventListener("click", () => {
 
 let edit = document.getElementById("edit-atualiz");
 
-edit.addEventListener("click", ()=>{
+edit.addEventListener("click", () => {
     if(edit.textContent === "Atualizar Dados!"){
+        let form = document.getElementById("formAtualiz");
+        let formEnv = new FormData(form);
+        const options = {
+            method: "POST",
+            body: formEnv
+        }
+        fetch("../portal/AtualizaDados.php", options);
         alert("Dados Atualizados!");
-        window.location = ("index.html");
+        window.location = ("../portal/index.html");
     }else{
         edit.textContent = "Atualizar Dados!"
         document.getElementById("nome1").removeAttribute("readonly");
@@ -61,9 +68,38 @@ edit.addEventListener("click", ()=>{
     }
 });
 
+//criacao de anuncios
+
+let criarAnuncio = document.getElementById("criarAnuncio");
+
+criarAnuncio.addEventListener("click", () => {
+    let form = document.getElementById("formAnun");
+    let formEnv = new FormData(form);
+    const options = {
+        method: "POST",
+        body: formEnv
+    }
+    fetch("../portal/createAnun.php", options)
+    alert("Anúncio Criado com Sucesso!");
+    window.location = ("../portal/index.html");
+});
+
+//AJAX para o preenchimento automatico de endereco
+let cep = document.getElementById("cep");
+
+cep.addEventListener("focusout", () => {
+    fetch(`../portal/cep.php?cep=${cep.value}`)
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("bairro").value = data.bairro;
+        document.getElementById("cidade").value = data.cidade;
+        document.getElementById("esatdo").value = data.estado;
+    })
+});
+
 //listagem de anuncios do perfil
 myanun.addEventListener("click", () => {
-    fetch(`../portal/allAnuns.php?`)
+    fetch(`../portal/allAnuns.php`)
     .then(response => response.json())
     .then(data => {
         data.forEach(row => {
@@ -131,7 +167,7 @@ searchD.addEventListener("click", () => {
     .then(response => response.json())
     .then(data => {
         data.forEach(row => {
-            fetch(`imgsrc.php?src=${data.idAnuncio}`)
+            fetch(`imgsrc.php?src=${row.idAnuncio}`)
             .then(response => response.json())
             .then(imgSrc => {
                 let card = document.createElement("div");
@@ -142,17 +178,17 @@ searchD.addEventListener("click", () => {
                 img.className = "class-img-top"
                 img.width = 200
                 img.height = 200
-                img.alt = data.titulo;
+                img.alt = row.titulo;
 
                 let bodyCard = document.createElement("div");
                 bodyCard.className = "card-body"
                 let cardTitle = document.createElement("h5");
                 cardTitle.className = "card-title";
-                cardTitle.textContent = data.titulo;
+                cardTitle.textContent = row.titulo;
                 bodyCard.appendChild(cardTitle);
                 let cardText = document.createElement("p");
                 cardText.className = "card-text";
-                cardText.textContent = data.descricao;
+                cardText.textContent = row.descricao;
                 bodyCard.appendChild(cardText);
                 let Bedit = document.createElement("a");
                 Bedit.className = "btn btn-danger";
@@ -161,7 +197,7 @@ searchD.addEventListener("click", () => {
                 Bedit.addEventListener("click", () => {
                     let action = confirm("Deseja realmente excluir este anúncio?");
                     if(action){
-                        fetch(`delete.php?${data.idAnuncio}`)
+                        fetch(`delete.php?id=${row.idAnuncio}`)
                         card.remove();
                     }
                 })
@@ -183,7 +219,7 @@ interesses.addEventListener("click", () => {
     .then(data => {
         let listaInteressados = document.getElementById("lista-interesse");
         let contador = 1;
-        data.forEach(() =>{
+        for(row of data){
             let interessado = document.createElement("div").className = "accordion-item";
             
             let h2 = document.createElement("h2");
@@ -196,7 +232,7 @@ interesses.addEventListener("click", () => {
             button.dataset.bsTarget = `#collapse${contador}`
             button.ariaExpanded = "false"
             button.ariaControls = `collapse${contador}`
-            button.textContent = `${data.contato} | ${data.dataHora}`
+            button.textContent = `${row.contato} | ${row.dataHora}`
             h2.appendChild(button)
             let div = document.createElement("div");
             div.id = `collapse${contador}`
@@ -205,7 +241,7 @@ interesses.addEventListener("click", () => {
             div.dataset.bsParent = "accordion"
             let body = document.createElement("div");
             body.className = "accordion-body"
-            body.textContent = data.mensagem
+            body.textContent = row.mensagem
             div.appendChild(body)
 
             interessado.appendChild(h2);
@@ -213,7 +249,6 @@ interesses.addEventListener("click", () => {
             listaInteressados.appendChild(interessado);
             contador++;
         }
-        );
     })
 });
 

@@ -53,76 +53,82 @@
             </div>
 		</nav>
 		<section id="perfil" hidden>
-			<form class="row g-3">
+			<form class="row g-3" id="formAtualiz">
 				<div class="col-12">
 					<label for="nome1" class="form-label">Nome</label>
-				  	<input type="text" class="form-control" id="nome1" readonly>
+				  	<input type="text" name="nome" class="form-control" id="nome1" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="cpf" class="form-label">CPF</label>
-					<input type="tel" class="form-control" id="cpf" placeholder="xxx.xxx.xxx-xx" readonly>
+					<input type="tel" name="cpf" class="form-control" id="cpf" placeholder="xxx.xxx.xxx-xx" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="tel" class="form-label">Telefone</label>
-					<input type="tel" class="form-control" id="tel" placeholder="(xx) 9xxxx-xxxx" readonly>
+					<input type="tel" name="tel" class="form-control" id="tel" placeholder="(xx) 9xxxx-xxxx" readonly>
 				</div>
 				<div class="col-md-6">
 					<label for="email" class="form-label">Email</label>
-				  <input type="email" class="form-control" id="email" readonly>
+				  	<input type="email" name="email" class="form-control" id="email" readonly>
 				</div>
 				<div class="col-md-6">
-				  <label for="passw" class="form-label">Password</label>
-				  <input type="password" class="form-control" id="passw" readonly>
+					<label for="passw" class="form-label">Password</label>
+					<input type="password" name="passw" class="form-control" id="passw" readonly>
 				</div>
 				<div class="col-12">
-				  <button type="submit" class="btn btn-primary" id="edit-atualiz">Editar Dados</button>
+				  	<button type="button" class="btn btn-primary" id="edit-atualiz">Editar Dados</button>
 				</div>
 			</form>
 		</section>
 		<section id="anunCreate" hidden>
-			<form class="row g-3">
-				<div class="col-md-6">
-				  <label for="title" class="form-label">Titulo do Anúncio</label>
-				  <input type="text" class="form-control" id="title">
-				</div>
-				<div class="col-md-6">
-				  <label for="description" class="form-label">Descrição</label>
-				  <input type="password" class="form-control" id="description">
-				</div>
-				<div class="col-md-4">
-					<label for="price" class="form-label">Preco</label>
-					<input type="text" class="form-control" id="price">
-				</div>
-				<div class="col-md-8">
-					<label for="datetime" class="form-label">Data</label>
-				  <input type="date" class="form-control" id="datetime">
+			<form class="row g-3" id="formAnun">
+				<div class="col-12">
+				  	<label for="title" class="form-label">Titulo do Anúncio</label>
+				  	<input type="text" name="title" class="form-control" id="title" required>
 				</div>
 				<div class="col-12">
-					<label for="cep" class="form-label">cep</label>
-					<input type="text" class="form-control" id="cep">
+				  	<label for="description" class="form-label">Descrição</label>
+				  	<textarea class="form-control" name="desc" id="description" rows="3" required></textarea>
 				</div>
-				<div class="col-md-4">
-					<label for="bairro" class="form-label">Bairro</label>
-					<input type="text" class="form-control" id="bairro">
-				</div>
-				<div class="col-md-4">
-					<label for="cidade" class="form-label">Cidade</label>
-					<input type="text" class="form-control" id="cidade">
-				</div>
-				<div class="col-md-4">
-					<label for="estado" class="form-label">Estado</label>
-					<select id="estado" class="form-select">
+				<div class="col-md-8">
+					<label for="categoria" class="form-label">Categoria</label>
+					<select id="categoria" name="categoria" class="form-select" required>
 					<option selected id="choose">Choose...</option>
+					<option id="1">Veículo</option>
+					<option id="2">Eletroeletrônico</option>
+					<option id="3">Imóvel</option>
+					<option id="4">Móvel</option>
+					<option id="5">Vestuário</option>
+					<option id="6">Outro</option>
+				</select>
+				<div class="col-md-4">
+					<label for="price" class="form-label">Preco</label>
+					<input type="text" name="price" class="form-control" id="price" required>
+				</div>
+				<div class="col-md-6">
+					<label for="cep" class="form-label">cep</label>
+					<input type="text" name="cep" class="form-control" id="cep" required pattern="\d{5}-\d{3}" title="xxxxx-xxx">
+				</div>
+				<div class="col-md-6">
+					<label for="bairro" class="form-label">Bairro</label>
+					<input type="text" name="bairro" class="form-control" id="bairro" required>
+				</div>
+				<div class="col-md-6">
+					<label for="cidade" class="form-label">Cidade</label>
+					<input type="text" name="cidade" class="form-control" id="cidade" required>
+				</div>
+				<div class="col-md-6">
+					<label for="estado" class="form-label">Estado</label>
+					<input type="text" name="estado" class="form-control" id="estado" required>
 				</select>
 			</div>
-			<div class="col-12">
+				<div class="col-12">
 					<div class="mb-3">
 						<label for="file" class="form-label">Selecione a imagem para o anúncio</label>
-						<input class="form-control form-control-sm" id="file" type="file">
+						<input name="srcImg" class="form-control form-control-sm" id="file" type="file" required>
 					</div>
 				</div>
 				<div class="col-12">
-				  <button type="submit" class="btn btn-primary">Criar Anúncio!</button>
+				  <button type="submit" id="criarAnuncio" class="btn btn-primary">Criar Anúncio!</button>
 				</div>
 			</form>
 		</section>
