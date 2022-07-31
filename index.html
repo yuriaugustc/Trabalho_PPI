@@ -18,13 +18,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Produtos</a>
+                    <a href="#" id="produtos">Produtos</a>
                 </li>
                 <li>
-                    <a href="#">Anunciar</a>
+                    <a href="#" id="anunciar">Anunciar</a>
                 </li>
                 <li>
-                    <a href="#">Busca Avançada</a>
+                    <a href="#" id="busca">Busca Avançada</a>
                 </li>
                 <li>
                     <form class="search" action="./scripts/search.php" method="get">
@@ -39,67 +39,10 @@
             </ul>
         </nav>
         <main id="main1">
-            <section>
-                <label for="findProducts">Descubra novos produtos</label>
-                <div id="findProducts">
-                    <div class="card">
-                        <a href="">
-                            <img src="#" alt="produto1" width="200" height="200">
-                            <p>Produto1</p>
-                            <p>R$</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="foward">
-                    <button type="button" id="foward">Ver Mais</button>
-                </div>
+            <section id="welcome">
+                <h3>Bem-Vindo!</h3>
+                <img src="./img/logo.png" alt="logo" height="200" width="200">
             </section>
-            <section>
-                <div id="moreVisited">
-                    <label for="moreVisited">Produtos mais visitados</label>
-                    <div class="card">
-                        <a href="">
-                            <img src="#" alt="produto1" width="200" height="200">
-                            <p>Produto1</p>
-                            <p>R$</p>
-                        </a>
-                    </div>
-                    <div class="foward">
-                        <button type="button" id="foward">Ver Mais</button>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div id="newProducts">
-                    <label for="newProducts">Produtos recentemente lançados</label>
-                    <div class="card">
-                        <a href="">
-                            <img src="#" alt="produto1" width="200" height="200">
-                            <p>Produto1</p>
-                            <p>R$</p>
-                        </a>
-                    </div>
-                    <div class="foward">
-                        <button type="button" id="foward">Ver mais</button>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <div id="onPromotion">
-                    <label for="onPromotion">Em Promoção</label>
-                    <div class="card">
-                        <a href="">
-                            <img src="#" alt="produto1" width="200" height="200">
-                            <p>Produto1</p>
-                            <p>R$</p>
-                        </a>
-                    </div>
-                    <div class="foward">
-                        <button type="button" id="foward">Ver mais</button>
-                    </div>
-                </div>
-            </section>
-            <a class="b2top" href="#home">Voltar ao topo</a>
         </main>
         <main id="main2" hidden>
             <form class="signin" action="./publico/cadastra.php" method="post">
@@ -107,32 +50,32 @@
                 <label for="nome">Dados Pessoais:</label>
                 <div>
                     <label for="nome">Nome Completo</label>
-                    <input type="text" name="nome" id="nome" pattern="[A-Za-z].{1,}">
+                    <input type="text" name="nome" id="nome" pattern="[A-Za-z].{1,}" required>
                     <span></span>
                 </div>
                 <div>
                     <label for="cpf">CPF</label>
-                    <input type="text" name="cpf" id="cpf" pattern="\d{3}.\d{3}.\d{3}-\d{2}" title="xxx.xxx.xxx-xx" placeholder="xxx.xxx.xxx-xx">
+                    <input type="text" name="cpf" id="cpf" pattern="\d{3}.\d{3}.\d{3}-\d{2}" title="xxx.xxx.xxx-xx" placeholder="xxx.xxx.xxx-xx" required>
                     <span></span>
                 </div>
                 <div>
                     <label for="tel">Telefone</label>
-                    <input type="tel" name="tel" id="tel" pattern="(\d{2}) 9\d{4}-\d{4}" title="(ddd) 9xxxx-xxxx" placeholder="(ddd) 9xxxx-xxxx">
+                    <input type="tel" name="tel" id="tel" pattern="(\d{2}) 9\d{4}-\d{4}" title="(ddd) 9xxxx-xxxx" placeholder="(ddd) 9xxxx-xxxx" required>
                     <span></span>
                 </div>
                 <label for="email1">Dados da Conta:</label>
                 <div>
                     <label for="email1">Email</label>
-                    <input type="email" name="email" id="email1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <input type="email" name="email" id="email1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                     <span></span>
                 </div>
                 <div>
                     <label for="passw1">Senha</label>
-                    <input type="password" name="name" id="passw1" pattern=".{8,}" title="Mínimo 8 caractes" placeholder="Mínimo 8 caracteres...">
+                    <input type="password" name="name" id="passw1" pattern=".{8,}" title="Mínimo 8 caractes" placeholder="Mínimo 8 caracteres..." required>
                     <span></span>
                 </div>
                 <div>
-                    <button id="create" disabled>Criar sua conta!</button>
+                    <button id="create">Criar sua conta!</button>
                 </div>
             </form>
         </main>
@@ -140,12 +83,12 @@
             <form class="login">
                 <div class="email2">
                     <label for="email2">Email:</label>
-                    <input type="email" id="email2" placeholder="Digite seu Email" required>
+                    <input type="email" name="email" id="email2" placeholder="Digite seu Email" required>
                 </div>
                 <span id="spanEmail"></span>
                 <div class="passw">
                     <label for="passw2">Senha:</label>
-                    <input type="password" id="passw2" placeholder="Digite sua Senha" required>
+                    <input type="password" name="passw" id="passw2" placeholder="Digite sua Senha" required>
                 </div>
                 <span id="spanPassw"></span>
                 <div>
@@ -160,6 +103,9 @@
             <a href="https://github.com/yuriaugustc/">Yuri Augusto da Costa</a>
             <text>Copyright ©</text>
         </footer>
+        <script>
+            window.onload = () => fetch("./portal/logout.php")
+        </script>
         <script src="./scripts/index.js"></script>
         <script src="./scripts/signin.js"></script>
         <script src="./scripts/login.js"></script>

@@ -1,0 +1,1 @@
+// devolver todos os anuncios do perfil

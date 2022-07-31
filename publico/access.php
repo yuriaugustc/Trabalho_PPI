@@ -1,5 +1,5 @@
 <?php
-    require "conexaoMysql.php";
+    require "../conexaoMysql.php";
     $pdo = mysqlConnect();
 
     $email = isset($_GET["email"]) ? $_GET["email"] : "";
@@ -10,15 +10,23 @@
         exit();
     }
     try {
+        $hashpassw = password_hash($passw, PASSWORD_BCRYPT);
         $sql = <<<sql
             SELECT email, senhaHash FROM anunciante
-                WHERE email = "?" AND senhaHash = "?"
+                WHERE anunciante.email = ?
             sql;
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$email, $hashpassw]);
-        $row = $stmt->fetch();
-        $row["senhaHash"] = password_verify($passw, $row["senhaHash"]); //fazendo a comparacao de senha e escrevendo um bool no valor, pois essa comparacao não é possivel no JS, visto que o php quem possui a função de encriptação e verificação;
-
+        $stmt->execute([$email]);
+        $resposta = $stmt->fetch();
+        $bool = password_verify($passw, $resposta["senhaHash"]); //fazendo a comparacao de senha e escrevendo um bool no valor, pois essa comparacao não é possivel no JS, visto que o php quem possui a função de encriptação e verificação;
+        $row = array(
+            "email" => $resposta["email"],
+            "passw" => $resposta["senhaHash"],
+            "hash" => $hashpassw
+        );
+        session_start();
+        $_SESSION["email"] = $email;
+        
         header('Content-type: application/json');
         echo json_encode($row);
 

@@ -3,6 +3,8 @@ body {
 }
 
 #welcome {
+    cursor: default;
+    z-index: -1;
     opacity: 0.3;
     position: absolute;
     top: 50%;
@@ -33,15 +35,21 @@ label {
 }
 
 #myAnuns {
-    padding: 1%;
-    margin: 0 auto;
+    padding-top: 1%;
     
 }
 
 #anunDelete {
     padding-top: 1%;
+}
+
+#search-delete {
+    width: 60%;
     margin: 0 auto;
-    
+}
+
+.d-card-list, .my-card-list {
+    padding-top: 1%;
 }
 
 .card {
@@ -49,4 +57,8 @@ label {
     margin: 5px;
     display: inline-block;
     width: 18rem;
+}
+
+.card:hover {
+    border-color: #ddd;
 }

@@ -1,5 +1,5 @@
 <?php
-    require "conexaoMysql.php";
+    require "../conexaoMysql.php";
     $pdo = mysqlConnect();
 
     $string = isset($_GET["search"]) ? $_GET["search"] : "";

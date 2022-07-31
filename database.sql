@@ -48,10 +48,10 @@ CREATE TABLE foto (
 
 CREATE TABLE interesse (
   idInteresse INT AUTO_INCREMENT,
-  mensagem VARCHAR(255) NULL,
-  dataHora DATETIME NULL,
-  contato INT NULL,
+  mensagem VARCHAR(255) NOT NULL,
+  dataHora DATETIME NOT NULL,
+  contato INT NOT NULL,
   PRIMARY KEY(idInteresse),
-  idAnuncio INT NULL,
+  idAnuncio INT NOT NULL,
   INDEX interesse_FK(idAnuncio)
 )ENGINE=InnoDB;

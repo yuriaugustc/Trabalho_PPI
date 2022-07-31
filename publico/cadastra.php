@@ -1,5 +1,5 @@
 <?php
-    require "conexaoMysql.php";
+    require "../conexaoMysql.php";
     $pdo = mysqlConnect();
 
     $nome = isset($_POST["nome"]) ? $_POST["nome"] : "";
@@ -7,7 +7,7 @@
     $tel = isset($_POST["tel"]) ? $_POST["tel"] : "";
     $email = isset($_POST["email"]) ? $_POST["email"] : "";
     $senha = isset($_POST["passw"]) ? $_POST["passw"] : "";
-    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+    $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
 
     try {
         $sql = <<<sql
@@ -18,8 +18,16 @@
         $stmt = $pdo->prepare($sql);
         $bool = $stmt->execute([$nome, $cpf, $email, $senhaHash, $tel]);
         
-        header('Content-type: application/json');
-        echo json_encode($bool);
+        if($bool){
+            session_start();
+            $_SESSION["email"] = $email;
+
+            header("Location: ../portal/index.html");
+            exit();
+        }else{
+            header("Location: ../index.html");
+            exit();
+        }
     }catch (Exception $e) {
         exit('Ocorreu uma falha: ' . $e->getMessage());
     }

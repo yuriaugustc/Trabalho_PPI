@@ -1,0 +1,1 @@
+//buscar o perfil com base no email da sessao

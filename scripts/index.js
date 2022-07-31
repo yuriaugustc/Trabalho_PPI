@@ -1,3 +1,13 @@
+//produtos
+
+
+// anunciar
+let anunciar = document.getElementById("anunciar");
+
+anunciar.addEventListener("click", () =>
+    document.getElementById("login").dispatchEvent(new Event("click"))
+);
+
 // signin
 let signin = document.getElementById("signin");
 

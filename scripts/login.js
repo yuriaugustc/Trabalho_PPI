@@ -21,7 +21,7 @@ let log = document.getElementById("log");
 
 log.addEventListener("click", () => {
     if(!(email.value === "") && !(senha.value === "")){
-        fetch(`./publico/access.php?email=${email}&passw=${senha}`)
+        fetch(`./publico/access.php?email=${email.value}&passw=${senha.value}`)
         .then(response => response.json())
         .then(data => {
             if(email === data.email && data.senhaHash){ // a senha está sendo comparada dessa forma pois foi escrito um bool no valor, pois não é possivel comparar a senha digitada com o valor hash no js, por isso fiz a comparacao no php

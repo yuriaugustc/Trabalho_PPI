@@ -7,6 +7,14 @@ body {
     background-color: #fff;
 }
 
+#welcome {
+    padding: 10% 0;
+    text-align: center;
+    cursor: default;
+    opacity: 0.5;
+    filter: grayscale(60%);
+}
+
 ul {
     margin: 0;
     padding: 0;
