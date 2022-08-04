@@ -103,28 +103,28 @@ myanun.addEventListener("click", () => {
     .then(response => response.json())
     .then(data => {
         data.forEach(row => {
-            fetch(`imgsrc.php?src=${data.idAnuncio}`)
+            fetch(`imgsrc.php?src=${row.idAnuncio}`)
             .then(response => response.json())
             .then(imgSrc => {
                 let card = document.createElement("div");
                 card.className = "card";
                 card.style = "width: 18rem";
                 let img = document.createElement("img");
-                img.src = `../img/imgAnuns/${imgSrc.nomeArqFoto}`
+                img.src = `../img/imgAnuns/${imgSrc}`
                 img.className = "class-img-top"
                 img.width = 200
                 img.height = 200
-                img.alt = data.titulo;
+                img.alt = row.titulo;
 
                 let bodyCard = document.createElement("div");
                 bodyCard.className = "card-body"
                 let cardTitle = document.createElement("h5");
                 cardTitle.className = "card-title";
-                cardTitle.textContent = data.titulo;
+                cardTitle.textContent = row.titulo;
                 bodyCard.appendChild(cardTitle);
                 let cardText = document.createElement("p");
                 cardText.className = "card-text";
-                cardText.textContent = data.descricao;
+                cardText.textContent = row.descricao;
                 bodyCard.appendChild(cardText);
                 let Bedit = document.createElement("a");
                 Bedit.className = "btn btn-primary";
@@ -138,13 +138,13 @@ myanun.addEventListener("click", () => {
 
                     document.getElementById("anunCreate").removeAttribute("hidden");
 
-                    document.getElementById("title").value = data.titulo;
-                    document.getElementById("description").value = data.titulo;
-                    document.getElementById("price").value = data.descricao;
-                    document.getElementById("datetime").value = data.dataHora;
-                    document.getElementById("cep").value = data.cep;
-                    document.getElementById("bairro").value = data.bairro;
-                    document.getElementById("estado").value = data.estado;
+                    document.getElementById("title").value = row.titulo;
+                    document.getElementById("description").value = row.titulo;
+                    document.getElementById("price").value = row.descricao;
+                    document.getElementById("datetime").value = row.dataHora;
+                    document.getElementById("cep").value = row.cep;
+                    document.getElementById("bairro").value = row.bairro;
+                    document.getElementById("estado").value = row.estado;
                 })
                 bodyCard.appendChild(Bedit);
 
@@ -174,7 +174,7 @@ searchD.addEventListener("click", () => {
                 card.className = "card";
                 card.style = "width: 18rem";
                 let img = document.createElement("img");
-                img.src = `../img/imgAnuns/${imgSrc.nomeArqFoto}`
+                img.src = `../img/imgAnuns/${imgSrc}`
                 img.className = "class-img-top"
                 img.width = 200
                 img.height = 200

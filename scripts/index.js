@@ -9,92 +9,58 @@ produtos.addEventListener("click", () => {
     document.getElementById("mainCadastro").hidden = "true";
     document.getElementById("mainLogin").hidden = "true";
     let contador = 0;
-    // fetch('../publico/getProducts.php')
-    // .then(response => response.json())
-    // .then(data => {
+    fetch(`../publico/getProducts.php?count=${contador}`)
+    .then(response => response.json())
+    .then(data => {
         let data
-        getProducts(contador++, data);
+        getProducts(data);
         window.onscroll = function () {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10)
-                getProducts(contador++, data);
+                getProducts(data);
         }
-   // })
+    })
 });
 
-function getProducts(contador, data){
-        let data1 = [
-            {
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            },{
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            },{
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            },{
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            },{
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            },{
-                titulo : "titulo",
-                preco : "100.00",
-                imgSrc : "produto1.jpg",
-                descricao : "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta, animi alias maxime, veniam enim nisi iure distinctio non aliquam nobis quibusdam fuga eum aliquid similique, atque sed consequuntur velit. Velit?"
-            }  
-        ];
-        data1.forEach(row => {
-            //fetch(`imgsrc.php?src=${row.idAnuncio}`)
-            //.then(response => response.json())
-            //.then(imgSrc => {
-                let card = document.createElement("div");
-                card.className = "card";
-                let a = document.createElement("a");
-                a.href = "#";
-                let img = document.createElement("img");
-                img.src = `./img/imgAnuns/${row.imgSrc}`;
-                img.alt = row.titulo;
-                img.width = 300;
-                img.height = 300;
-                let p = document.createElement("p");
-                p.textContent = row.titulo;
-                let p1 = document.createElement("p");
-                p1.textContent = `R$ ${row.preco}`;
-                let p2 = document.createElement("p");
-                p2.textContent = row.descricao
-                a.appendChild(img);
-                a.appendChild(p);
-                a.appendChild(p1);
-                a.appendChild(p2);
-                card.appendChild(a);
-                card.addEventListener("click", () => {
-                    document.getElementById("welcome").hidden = "true";
-                    document.getElementById("prods").hidden = "true";
-                    document.getElementById("advansearch").hidden = "true";
-                    document.getElementById("mainCadastro").hidden = "true";
-                    document.getElementById("mainLogin").hidden = "true";
-                    document.getElementById("details").removeAttribute = "hidden";
+function getProducts(data){
+    data.forEach(row => {
+        fetch(`imgsrc.php?id=${row.idAnuncio}`)
+        .then(response => response.json())
+        .then(imgSrc => {
+            let card = document.createElement("div");
+            card.className = "card";
+            let a = document.createElement("a");
+            a.href = "#";
+            let img = document.createElement("img");
+            img.src = `./img/imgAnuns/${imgSrc}`;
+            img.alt = row.titulo;
+            img.width = 300;
+            img.height = 300;
+            let p = document.createElement("p");
+            p.textContent = row.titulo;
+            let p1 = document.createElement("p");
+            p1.textContent = `R$ ${row.preco}`;
+            let p2 = document.createElement("p");
+            p2.textContent = row.descricao
+            a.appendChild(img);
+            a.appendChild(p);
+            a.appendChild(p1);
+            a.appendChild(p2);
+            card.appendChild(a);
+            card.addEventListener("click", () => {
+                document.getElementById("welcome").hidden = "true";
+                document.getElementById("prods").hidden = "true";
+                document.getElementById("advansearch").hidden = "true";
+                document.getElementById("mainCadastro").hidden = "true";
+                document.getElementById("mainLogin").hidden = "true";
+                document.getElementById("details").removeAttribute = "hidden";
 
-                    document.getElementById("imgProd").src = row.imgSrc;
-                    document.getElementById("title").textContent = row.titulo;
-                    document.getElementById("price").textContent = row.preco;
-                });
-                document.getElementById("prods").appendChild(card);
-            //})
+                document.getElementById("imgProd").src = row.imgSrc;
+                document.getElementById("title").textContent = row.titulo;
+                document.getElementById("price").textContent = row.preco;
+            });
+            document.getElementById("prods").appendChild(card);
         })
-    //})
+    })
 }
 
 //listener da main de detalhes
