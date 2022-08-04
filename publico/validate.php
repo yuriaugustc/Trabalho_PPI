@@ -6,12 +6,11 @@
 
     if($cpf === "")
         exit();
-
     try {
-        $sql = <<<SQL
-            SELECT cpf FROM anunciante
-                WHERE cpf = '?'
-            SQL;
+        $sql = <<<sql
+            SELECT anunciante.cpf FROM anunciante
+                WHERE anunciante.cpf = ?
+            sql;
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$cpf]);
         $row = $stmt->fetch();

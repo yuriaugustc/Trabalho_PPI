@@ -10,7 +10,7 @@
     try {
         $search = explode(" ", $string);
         $sql = <<<sql
-            SELECT titulo FROM anuncio
+            SELECT * FROM anuncio
                 WHERE anuncio.descricao LIKE %?%
                     AND anuncio.descricao LIKE %?%
                     AND anuncio.descricao LIKE %?%

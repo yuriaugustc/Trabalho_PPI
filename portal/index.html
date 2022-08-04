@@ -52,6 +52,10 @@
               </div>
             </div>
 		</nav>
+		<section id="welcome" class="text-center">
+			<h3>Bem-Vindo!</h3>
+			<img src="../img/logo.png" alt="logo" height="200" width="200">
+		</section>
 		<section id="perfil" hidden>
 			<form class="row g-3" id="formAtualiz">
 				<div class="col-12">
@@ -92,14 +96,15 @@
 				<div class="col-md-8">
 					<label for="categoria" class="form-label">Categoria</label>
 					<select id="categoria" name="categoria" class="form-select" required>
-					<option selected id="choose">Choose...</option>
-					<option id="1">Veículo</option>
-					<option id="2">Eletroeletrônico</option>
-					<option id="3">Imóvel</option>
-					<option id="4">Móvel</option>
-					<option id="5">Vestuário</option>
-					<option id="6">Outro</option>
-				</select>
+						<option selected id="choose">Choose...</option>
+						<option id="1">Veículo</option>
+						<option id="2">Eletroeletrônico</option>
+						<option id="3">Imóvel</option>
+						<option id="4">Móvel</option>
+						<option id="5">Vestuário</option>
+						<option id="6">Outro</option>
+					</select>
+				</div>
 				<div class="col-md-4">
 					<label for="price" class="form-label">Preco</label>
 					<input type="text" name="price" class="form-control" id="price" required>
@@ -119,13 +124,10 @@
 				<div class="col-md-6">
 					<label for="estado" class="form-label">Estado</label>
 					<input type="text" name="estado" class="form-control" id="estado" required>
-				</select>
-			</div>
+				</div>
 				<div class="col-12">
-					<div class="mb-3">
-						<label for="file" class="form-label">Selecione a imagem para o anúncio</label>
-						<input name="srcImg" class="form-control form-control-sm" id="file" type="file" required>
-					</div>
+					<label for="file" class="form-label">Selecione a imagem para o anúncio</label>
+					<input name="srcImg" class="form-control form-control-sm" id="file" type="file" required>
 				</div>
 				<div class="col-12">
 				  <button type="submit" id="criarAnuncio" class="btn btn-primary">Criar Anúncio!</button>
@@ -135,30 +137,6 @@
 		<section id="myAnuns" hidden>
 			<div id="my-card-list">
 				<!-- Lista de anuncios -->
-				<div class="card" style="width: 18rem;">
-					<img src="#" class="card-img-top" alt="anuncio">
-					<div class="card-body">
-						<h5 class="card-title" id="card-tittle1">Card title</h5>
-						<p class="card-text" id="card-desc1">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-primary">Detalhes</a>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="#" class="card-img-top" alt="anuncio">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-primary">Detalhes</a>
-					</div>
-				</div>
-				<div class="card" style="width: 18rem;">
-					<img src="#" class="card-img-top" alt="anuncio">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<a href="#" class="btn btn-primary">Detalhes</a>
-					</div>
-				</div>
 			</div>
 		</section>
 		<section id="anunDelete" hidden>
@@ -181,16 +159,14 @@
 						<div class="modal-body" id="modal-body">
 							<div class="accordion" id="lista-interesse">
 								<div class="accordion-item">
-								  <h2 class="accordion-header" id="interessado1">
-									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-									  Interessado1
-									</button>
-								  </h2>
-								  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="interessado1" data-bs-parent="accordion">
-									<div class="accordion-body">
-									  Mensagem do interessado.
+								  	<h2 class="accordion-header" id="interessado1">
+										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+											Interessado
+										</button>
+								  	</h2>
+									<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="interessado1" data-bs-parent="accordion">
+										<div class="accordion-body">Mensagem do interessado.</div>
 									</div>
-								  </div>
 								</div>
 							</div>
 						</div>
@@ -204,22 +180,18 @@
 		<section id="sair">
 			<div class="modal fade" id="sair1" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
 				<div class="modal-dialog">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <h5 class="modal-title" id="logout">Tem certeza que deseja sair?</h5>
-					  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="logout">Tem certeza que deseja sair?</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="button" id="exit" class="btn btn-primary">Sair</button>
+						</div>
 					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					  <button type="button" id="exit" class="btn btn-primary">Sair</button>
-					</div>
-				  </div>
 				</div>
 			</div>
-		</section>
-		<section id="welcome" class="text-center">
-			<h3>Bem-Vindo!</h3>
-			<img src="../img/logo.png" alt="logo" height="200" width="200">
 		</section>
 	</main>
 	<script src="../scripts/portal.js"></script>

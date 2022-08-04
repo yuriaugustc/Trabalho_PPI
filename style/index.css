@@ -80,62 +80,54 @@ nav a:hover {
     font-size: medium;
 }
 
+h2 {
+    color: #274472;
+    font-size: x-large;
+}
+
 label {
-    display: block;
     color: #274472;
     font-size: x-large;
     padding-top: 10px;
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
-label:hover {
+label:hover, h2:hover {
     cursor: pointer;
     color:#41729F;
 }
 
-#findProducts, #moreVisited, #newProducts, #onPromotion {
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
+#buttons {
+    float: right;
+    margin: 0;
 }
 
-
-.foward {
-    width: 9.9%;
-    height: 36%;
+.advsearch {
+    width: 90%;
     margin: 0 auto;
-    display: block;
-    position: absolute;
-    transform: translate(1385px, -270px);
-    background: linear-gradient(90deg, transparent, #274472);
+    padding-top: 1%;
 }
 
-.foward:hover {  
-    background: linear-gradient(90deg, transparent, #41729F);
+.advsearch div{
+    display: inline;
+    padding-right: 40px;
 }
 
-.foward button{
-    font-family: 'Permanent Marker', cursive;
-    color: #C3E0E5;
-    background-color: #274472;
-    border-color: #274472;
-    position: absolute;
-    transform: translate(50px, 110px);
-    padding: 10px;
-    border-radius: 60%;
-    cursor: pointer;
+#txtSearch {
+    width: 82%;
+    padding: 5px;
+    margin: 0 auto;
+    display: inline;
 }
 
-.foward button:hover {
-    color: #274472;
-    background-color: #C3E0E5;
-    border-color: #C3E0E5;
+#prods {
+    margin: 1%;
 }
 
 .card {
-    width: 15%;
-    border-radius: 10px;
-    margin: 0px 5px;
+    width: 30%;
+    border-radius: 5px;
+    margin: 5px 10px;
     display: inline-block;
     background-color: #274472;
     text-align: center;
@@ -148,26 +140,55 @@ label:hover {
     color:#C3E0E5;
 }
 
-.card a, a p {
+.card a {
+    text-decoration: none;
+}
+
+.card p{
     margin: 0;
-    padding: 0;
-    overflow: hidden;           /*remove a responsividade do texto, transformando em overflow*/
+    padding: 0 0 0 10px;
+    overflow-x: hidden;           /*remove a responsividade do texto, transformando em overflow*/
     text-overflow: ellipsis;    /* coloca "..." no fim do overflow*/
     white-space: nowrap;
     display: block;
-    text-decoration: none;
     color:#C3E0E5;
+    text-align: start;
 }
 
 .card a img {
+    margin: 0;
     border-radius: 10px;
     margin-top: 10px;
-    margin-left: 0;
-    align-self: center;
 }
 
-.card a p { /* Repetindo a classe para colocar espaço apenas no elemento p do card */
-    margin-left: 5px;
+/* Pagina detalhada dos cards */
+.details {
+    display: inline;
+}
+
+.informacoes {
+    position: absolute;
+    padding: 10px;
+}
+
+#price {
+    color: darkgreen;
+}
+
+#price::before {
+    content: 'R$';
+    color: darkgreen;
+}
+
+#contat {
+    width: 50%;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.demonstrarInteresse {
+    padding-left: 150px;
+    padding-right: 150px;
 }
 
 .b2top{
@@ -191,7 +212,6 @@ footer{
 }
 
 footer a{
-    display: block;
     text-decoration: none;
     color: #5885AF;
 }
@@ -203,9 +223,15 @@ footer a:hover {
 /* CSS destinado ao conteudo para login/cadastro */
 /* log in */
 .login {
-    padding: 10% 0;
+    padding: 10% 0 5% 0;
     width: 0 auto;
     text-align: center;
+}
+
+.login label {
+    width: 10%;
+    display: block;
+    margin: 0 auto;
 }
 
 .login div{
@@ -213,8 +239,10 @@ footer a:hover {
 }
 
 .login div input{
-    width: 13%;
-    padding: 5px 30px;
+    display: block;
+    margin: 0 auto;
+    width: 15%;
+    padding: 5px 5px;
     border-radius: 5px;
 }
 
@@ -235,6 +263,7 @@ footer a:hover {
 }
 
 .signin div input{
+    display: block;
     width: 50%;
     padding: 5px;
     border-radius: 5px;

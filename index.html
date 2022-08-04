@@ -34,19 +34,91 @@
                         </div>
                     </form>
                 </li>
-                <button id="login">Entrar</button>
-                <button id="signin">Cadastrar</button>
+                <li id="buttons">
+                    <button id="login">Entrar</button>
+                    <button id="signin">Cadastrar</button>
+                </li>
             </ul>
         </nav>
-        <main id="main1">
-            <section id="welcome">
+        <main id="welcome">
+            <section>
                 <h3>Bem-Vindo!</h3>
                 <img src="./img/logo.png" alt="logo" height="200" width="200">
             </section>
         </main>
-        <main id="main2" hidden>
+        <main id="prods" hidden>
+            <!-- produtos -->
+            <!-- FAZER OS LISTENERS PARA A SECTION DE DETALHES DO PRODUTO -->
+        </main>
+        <main id="details" hidden>
+            <section class="details">
+                <a  id="voltar" href="#prods">
+                    &lt; Voltar
+                </a>
+                <h2>Detalhes do Produto</h2>
+                <hr>
+                <span>
+                    <img src="#" id="imgProd" alt="produto" width="500" height="500">
+                </span>
+                <span class="informacoes">
+                    <p id="title">Titulo</p>
+                    <p id="price"></p>
+                    <p id="desc">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo fuga molestias mollitia assumenda exercitationem nobis eius ut repellendus. Fugit minima obcaecati eius repudiandae perspiciatis veritatis molestias possimus, illo iusto dignissimos.
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor maxime dolorem aliquam, accusamus dolorum sit neque ex sunt suscipit ut et earum rerum nostrum quae! Quia doloribus autem ducimus fuga!
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque in fugiat at molestiae nulla magni accusantium ducimus obcaecati. Voluptatum atque fugit quisquam facere maiores odio, quod itaque odit nobis similique.
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit similique atque corrupti minus doloremque tempore nulla numquam accusantium vitae! Mollitia commodi illum voluptatem officiis natus repellat nobis inventore autem! Obcaecati!
+                    </p>
+                    <hr>
+                    <span>
+                        <textarea name="interest" id="interest" placeholder="Digite aqui sua mensagem de interesse..." cols="135" rows="8"></textarea>
+                        <input type="tel" id="contat" placeholder="Telefone para contato...">
+                    </span>
+                    <span >
+                        <button id="demonstrarInteresse" class="demonstrarInteresse">Demonstrar Interesse</button>
+                    </span>
+                </span>
+            </section>
+        </main>
+        <main id="advansearch" hidden>
+            <!-- Busca Avancada -->
+            <form class="advsearch">
+                <div class="txtSearch">
+                    <input name="txtSearch" id="txtSearch" placeholder="Pesquisa Avançada...">
+                    <button id="bttntxtSearch">Pesquisar</button>
+                </div>
+                <div>
+                    <label for="where">Deseja realizar a busca no(a):</label>
+                    <select name="where" id="where">
+                        <option selected>Escolha...</option>
+                        <option value="1">Titulo</option>
+                        <option value="2">Descrição</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="min">Faixa de preço:</label>
+                    <input type="number" id="min" placeholder="Preço mínimo..." pattern="\d{1,},\d{1,}" title="xx,xx">
+                    <input type="number" id="max" placeholder="Preço máximo..." pattern="\d{1,},\d{1,}" title="xx,xx">
+                </div>
+                <div>
+					<label for="categoria">Categoria:</label>
+					<select id="categoria" name="categoria" required>
+						<option selected id="choose">Escolha...</option>
+						<option id="1">Veículo</option>
+						<option id="2">Eletroeletrônico</option>
+						<option id="3">Imóvel</option>
+						<option id="4">Móvel</option>
+						<option id="5">Vestuário</option>
+						<option id="6">Outro</option>
+					</select>
+				</div>
+            </form>
+        </main>
+        <main id="mainCadastro" hidden>
             <form class="signin" action="./publico/cadastra.php" method="post">
-                <label>Preencha todos os campos:</label>
+                <h2>Preencha todos os campos:</h2>
                 <label for="nome">Dados Pessoais:</label>
                 <div>
                     <label for="nome">Nome Completo</label>
@@ -63,7 +135,7 @@
                     <input type="tel" name="tel" id="tel" pattern="(\d{2}) 9\d{4}-\d{4}" title="(ddd) 9xxxx-xxxx" placeholder="(ddd) 9xxxx-xxxx" required>
                     <span></span>
                 </div>
-                <label for="email1">Dados da Conta:</label>
+                <h2>Dados da Conta:</h2>
                 <div>
                     <label for="email1">Email</label>
                     <input type="email" name="email" id="email1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
@@ -79,7 +151,7 @@
                 </div>
             </form>
         </main>
-        <main id="main3" hidden>
+        <main id="mainLogin" hidden>
             <form class="login">
                 <div class="email2">
                     <label for="email2">Email:</label>
@@ -100,8 +172,12 @@
             </form>
         </main>
         <footer>
-            <a href="https://github.com/yuriaugustc/">Yuri Augusto da Costa</a>
-            <text>Copyright ©</text>
+            <div>
+                <a href="https://github.com/yuriaugustc/">Yuri Augusto da Costa</a>
+            </div>
+            <div>
+                <text>Copyright ©</text>
+            </div>
         </footer>
         <script>
             window.onload = () => fetch("./portal/logout.php")

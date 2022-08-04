@@ -12,7 +12,7 @@
     try {
         $hashpassw = password_hash($passw, PASSWORD_BCRYPT);
         $sql = <<<sql
-            SELECT email, senhaHash FROM anunciante
+            SELECT anunciante.email, anunciante.senhaHash FROM anunciante
                 WHERE anunciante.email = ?
             sql;
         $stmt = $pdo->prepare($sql);
