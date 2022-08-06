@@ -12,7 +12,6 @@ produtos.addEventListener("click", () => {
     fetch(`../publico/getProducts.php?count=${contador}`)
     .then(response => response.json())
     .then(data => {
-        let data
         getProducts(data);
         window.onscroll = function () {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10)
