@@ -18,7 +18,6 @@ CREATE TABLE anuncio (
   bairro VARCHAR(30) NULL,
   cidade VARCHAR(30) NULL,
   estado VARCHAR(30) NULL,
-  visitas INT NULL,
   idAnunciante INT NOT NULL,
   idCategoria INT NOT NULL,
   PRIMARY KEY(idAnuncio, idAnunciante),

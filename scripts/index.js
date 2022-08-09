@@ -13,15 +13,51 @@ produtos.addEventListener("click", () => {
     .then(response => response.json())
     .then(data => {
         getProducts(data);
-        window.onscroll = function () {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10)
-                getProducts(data);
-        }
+        contador++;
     })
+    window.onscroll = function () {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10)
+        fetch(`../publico/getProducts.php?count=${contador}`)
+        .then(response => response.json())
+        .then(data => {
+            getProducts(data);
+            contador++;
+        })
+    }
 });
 
+// barra de pesquisa rapida
+let pesq = document.getElementById("pesq");
+pesq.addEventListener("click", () => {
+    document.getElementById("welcome").hidden = "true";
+    document.getElementById("prods").removeAttribute("hidden");
+    document.getElementById("details").hidden = "true";
+    document.getElementById("advansearch").hidden = "true";
+    document.getElementById("mainCadastro").hidden = "true";
+    document.getElementById("mainLogin").hidden = "true";
+    
+    let string = document.getElementById("search").value;
+    let contador = 0;
+    fetch(`../publico/search.php?search=${string}&number=${contador}`)
+    .then(response => response.json())
+    .then(data => {
+        getProducts(data);
+        contador++;
+    })
+    window.onscroll = () => {
+        
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10){
+            fetch(`../publico/search.php?search=${string}&number=${nmbr}`)
+            .then(response => response.json())
+            .then(data => getProducts(data))
+            contador++;
+        }
+    }
+});
+
+// funcao auxiliar para imprimir os produtos
 function getProducts(data){
-    data.forEach(row => {
+    for(row of data) {
         fetch(`imgsrc.php?id=${row.idAnuncio}`)
         .then(response => response.json())
         .then(imgSrc => {
@@ -30,7 +66,7 @@ function getProducts(data){
             let a = document.createElement("a");
             a.href = "#";
             let img = document.createElement("img");
-            img.src = `./img/imgAnuns/${imgSrc}`;
+            img.src = imgSrc.NomeArqFoto;
             img.alt = row.titulo;
             img.width = 300;
             img.height = 300;
@@ -53,13 +89,13 @@ function getProducts(data){
                 document.getElementById("mainLogin").hidden = "true";
                 document.getElementById("details").removeAttribute = "hidden";
 
-                document.getElementById("imgProd").src = row.imgSrc;
+                document.getElementById("imgProd").src = imgSrc.nomeArqFoto;
                 document.getElementById("title").textContent = row.titulo;
                 document.getElementById("price").textContent = row.preco;
             });
             document.getElementById("prods").appendChild(card);
         })
-    })
+    }
 }
 
 //listener da main de detalhes
@@ -94,7 +130,7 @@ anunciar.addEventListener("click", () =>
 // busca avancada
 let busca = document.getElementById("busca");
 
-busca.addEventListener("click", function(){
+busca.addEventListener("click", () => {
     document.getElementById("welcome").hidden = "true";
     document.getElementById("prods").hidden = "true";
     document.getElementById("details").hidden = "true";
@@ -108,20 +144,27 @@ busca.addEventListener("click", function(){
 let buscaAvancada = document.getElementById("bttntxtSearch");
 
 buscaAvancada.addEventListener("click", () => {
-    let form = document.getElementById("advsearch");
-    let formD = new FormData(form);
+    let form = document.querySelectorAll('form');
+    let formD = new FormData(form[1]);
+    console.log(formD);
     let options = {
-        method: POST,
-        body: formD
+        "method": "POST",
+        "body": formD
     }
+    console.log(formD);
+    let contador = 0;
     fetch('../publico/advansearch.php', options)
     .then(response => response.json())
     .then(data => {
-        let contador = 0;
-        getProducts(contador++, data);
+        getProducts(data);
+        contador++;
         window.onscroll = function () {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10)
-                getProducts(contador++, data);
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight-10){
+                fetch(`../publico/advansearch.php?count=${contador}`, options)
+                .then(response => response.json())
+                .then(data => getProducts(data));
+                contador++;
+            }
         }
     })
 });

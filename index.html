@@ -27,10 +27,10 @@
                     <a href="#" id="busca">Busca Avançada</a>
                 </li>
                 <li>
-                    <form class="search" action="./scripts/search.php" method="get">
+                    <form class="search" method="get">
                         <div>
                             <input type="text" name="search" id="search" placeholder="Pesquise um produto..." required>
-                            <button>Pesquisar</button>
+                            <button id="pesq" type="button">Pesquisar</button>
                         </div>
                     </form>
                 </li>
@@ -48,7 +48,6 @@
         </main>
         <main id="prods" hidden>
             <!-- produtos -->
-            <!-- FAZER OS LISTENERS PARA A SECTION DE DETALHES DO PRODUTO -->
         </main>
         <main id="details" hidden>
             <section class="details">
@@ -87,7 +86,7 @@
             <form class="advsearch">
                 <div class="txtSearch">
                     <input name="txtSearch" id="txtSearch" placeholder="Pesquisa Avançada...">
-                    <button id="bttntxtSearch">Pesquisar</button>
+                    <button id="bttntxtSearch" type="button">Pesquisar</button>
                 </div>
                 <div>
                     <label for="where">Deseja realizar a busca no(a):</label>
@@ -99,19 +98,21 @@
                 </div>
                 <div>
                     <label for="min">Faixa de preço:</label>
-                    <input type="number" id="min" placeholder="Preço mínimo..." pattern="\d{1,},\d{1,}" title="xx,xx">
-                    <input type="number" id="max" placeholder="Preço máximo..." pattern="\d{1,},\d{1,}" title="xx,xx">
+                    <input type="number"  name="min" id="min" placeholder="Preço mínimo...">
+                </div>
+                <div>
+                    <input type="number" id="max" name="max" placeholder="Preço máximo...">
                 </div>
                 <div>
 					<label for="categoria">Categoria:</label>
 					<select id="categoria" name="categoria" required>
 						<option selected id="choose">Escolha...</option>
-						<option id="1">Veículo</option>
-						<option id="2">Eletroeletrônico</option>
-						<option id="3">Imóvel</option>
-						<option id="4">Móvel</option>
-						<option id="5">Vestuário</option>
-						<option id="6">Outro</option>
+						<option id="1" value="1">Veículo</option>
+						<option id="2" value="2">Eletroeletrônico</option>
+						<option id="3" value="3">Imóvel</option>
+						<option id="4" value="4">Móvel</option>
+						<option id="5" value="5">Vestuário</option>
+						<option id="6" value="6">Outro</option>
 					</select>
 				</div>
             </form>
@@ -132,7 +133,7 @@
                 </div>
                 <div>
                     <label for="tel">Telefone</label>
-                    <input type="tel" name="tel" id="tel" pattern="(\d{2}) 9\d{4}-\d{4}" title="(ddd) 9xxxx-xxxx" placeholder="(ddd) 9xxxx-xxxx" required>
+                    <input type="tel" name="tel" id="tel" pattern="(\d{3}) 9\d{4}-\d{4}" title="(ddd) 9xxxx-xxxx" placeholder="(ddd) 9xxxx-xxxx" required>
                     <span></span>
                 </div>
                 <h2>Dados da Conta:</h2>
@@ -180,7 +181,7 @@
             </div>
         </footer>
         <script>
-            window.onload = () => fetch("./portal/logout.php")
+            window.onload = () => fetch("/portal/logout.php")
         </script>
         <script src="./scripts/index.js"></script>
         <script src="./scripts/signin.js"></script>

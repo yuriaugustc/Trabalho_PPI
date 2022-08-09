@@ -1,4 +1,5 @@
 <?php
+    require "../cpf.php";
     require "../conexaoMysql.php";
     $pdo = mysqlConnect();
 
@@ -8,16 +9,17 @@
         exit();
     try {
         $sql = <<<sql
-            SELECT anunciante.cpf FROM anunciante
+            SELECT cpf FROM anunciante
                 WHERE anunciante.cpf = ?
             sql;
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$cpf]);
         $row = $stmt->fetch();
-        
-        header('Content-type: application/json');
-        echo json_encode($row);
 
+        $cpf = new cpf($row["cpf"]);
+
+        header('Content-type: application/json');
+        echo json_encode($cpf);
     }catch (Exception $e) {
         exit('Ocorreu uma falha: ' . $e->getMessage());
     }

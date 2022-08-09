@@ -1,3 +1,13 @@
+<?php
+	session_start();
+	$email = $_SESSION["email"] ?? "";
+
+	if($email === ""){
+		header("Location: ../index.html");
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,7 +23,7 @@
     <main>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              	<a class="navbar-brand" href="index.html">
+              	<a class="navbar-brand" href="index.php">
 					<img src="../img/logo.png" alt="logo" height="30" width="30">
 					Portal
 				</a>
@@ -84,7 +94,7 @@
 			</form>
 		</section>
 		<section id="anunCreate" hidden>
-			<form class="row g-3" id="formAnun">
+			<form class="row g-3" id="formAnun" enctype="multipart/form-data">
 				<div class="col-12">
 				  	<label for="title" class="form-label">Titulo do Anúncio</label>
 				  	<input type="text" name="title" class="form-control" id="title" required>
@@ -96,13 +106,13 @@
 				<div class="col-md-8">
 					<label for="categoria" class="form-label">Categoria</label>
 					<select id="categoria" name="categoria" class="form-select" required>
-						<option selected id="choose">Choose...</option>
-						<option id="1">Veículo</option>
-						<option id="2">Eletroeletrônico</option>
-						<option id="3">Imóvel</option>
-						<option id="4">Móvel</option>
-						<option id="5">Vestuário</option>
-						<option id="6">Outro</option>
+						<option selected id="choose">Escolha...</option>
+						<option id="1" value="1">Veículo</option>
+						<option id="2" value="2">Eletroeletrônico</option>
+						<option id="3" value="3">Imóvel</option>
+						<option id="4" value="4">Móvel</option>
+						<option id="5" value="5">Vestuário</option>
+						<option id="6" value="6">Outro</option>
 					</select>
 				</div>
 				<div class="col-md-4">
@@ -130,7 +140,7 @@
 					<input name="srcImg" class="form-control form-control-sm" id="file" type="file" required>
 				</div>
 				<div class="col-12">
-				  <button type="submit" id="criarAnuncio" class="btn btn-primary">Criar Anúncio!</button>
+				  <button type="button" id="criarAnuncio" class="btn btn-primary">Criar Anúncio!</button>
 				</div>
 			</form>
 		</section>

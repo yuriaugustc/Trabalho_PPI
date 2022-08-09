@@ -36,7 +36,7 @@ anunD.addEventListener("click", ()=>{
 
 //edicao de perfil 
 perf.addEventListener("click", () => {
-    fetch("getPerfil.php") // resgatando o dados do perfil utilizando o email guardado como variavel de sessao
+    fetch("../portal/perfil.php") // resgatando o dados do perfil utilizando o email guardado como variavel de sessao
     .then(response => response.json())
     .then(data => {
         document.getElementById("nome1").value = data.nome;
@@ -51,20 +51,23 @@ let edit = document.getElementById("edit-atualiz");
 edit.addEventListener("click", () => {
     if(edit.textContent === "Atualizar Dados!"){
         let form = document.getElementById("formAtualiz");
+        
         let formEnv = new FormData(form);
         const options = {
             method: "POST",
             body: formEnv
         }
+        console.log(formEnv);
         fetch("../portal/AtualizaDados.php", options);
         alert("Dados Atualizados!");
-        window.location = ("../portal/index.html");
+        window.location = ("../portal/index.php");
     }else{
         edit.textContent = "Atualizar Dados!"
         document.getElementById("nome1").removeAttribute("readonly");
         document.getElementById("cpf").removeAttribute("readonly");
         document.getElementById("tel").removeAttribute("readonly");
         document.getElementById("email").removeAttribute("readonly");
+        document.getElementById("passw").removeAttribute("readonly");
     }
 });
 
@@ -73,15 +76,16 @@ edit.addEventListener("click", () => {
 let criarAnuncio = document.getElementById("criarAnuncio");
 
 criarAnuncio.addEventListener("click", () => {
-    let form = document.getElementById("formAnun");
-    let formEnv = new FormData(form);
+    let form = document.querySelector("form");
+    let formEnv = new FormData(form[1]);
+    
     const options = {
-        method: "POST",
-        body: formEnv
+        "method": "POST",
+        "body": formEnv
     }
     fetch("../portal/createAnun.php", options)
     alert("Anúncio Criado com Sucesso!");
-    window.location = ("../portal/index.html");
+    window.location = ("../portal/index.php");
 });
 
 //AJAX para o preenchimento automatico de endereco
@@ -110,7 +114,7 @@ myanun.addEventListener("click", () => {
                 card.className = "card";
                 card.style = "width: 18rem";
                 let img = document.createElement("img");
-                img.src = `../img/imgAnuns/${imgSrc}`
+                img.src = imgSrc.nomeArqFoto;
                 img.className = "class-img-top"
                 img.width = 200
                 img.height = 200
@@ -155,8 +159,6 @@ myanun.addEventListener("click", () => {
         });
     })
 });
-
-
 
 //busca de anuncios para delete
 let searchD = document.getElementById("search-d");
@@ -215,7 +217,7 @@ let interesses = document.getElementById("interesses");
 
 interesses.addEventListener("click", () => {
     fetch("interessados.php")
-    .then(response = response.json())
+    .then(response => response.json())
     .then(data => {
         let listaInteressados = document.getElementById("lista-interesse");
         let contador = 1;

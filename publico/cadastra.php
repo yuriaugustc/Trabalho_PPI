@@ -22,7 +22,7 @@
             session_start();
             $_SESSION["email"] = $email;
 
-            header("Location: ../portal/index.html");
+            header("Location: ../portal/index.php");
             exit();
         }else{
             header("Location: ../index.html");

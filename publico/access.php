@@ -10,9 +10,8 @@
         exit();
     }
     try {
-        $hashpassw = password_hash($passw, PASSWORD_BCRYPT);
         $sql = <<<sql
-            SELECT anunciante.email, anunciante.senhaHash FROM anunciante
+            SELECT senhaHash FROM anunciante
                 WHERE anunciante.email = ?
             sql;
         $stmt = $pdo->prepare($sql);
@@ -20,9 +19,8 @@
         $resposta = $stmt->fetch();
         $bool = password_verify($passw, $resposta["senhaHash"]); //fazendo a comparacao de senha e escrevendo um bool no valor, pois essa comparacao não é possivel no JS, visto que o php quem possui a função de encriptação e verificação;
         $row = array(
-            "email" => $resposta["email"],
-            "passw" => $resposta["senhaHash"],
-            "hash" => $hashpassw
+            "email" => $email,
+            "passw" => $bool
         );
         session_start();
         $_SESSION["email"] = $email;
