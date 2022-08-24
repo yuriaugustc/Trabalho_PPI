@@ -18,8 +18,9 @@
         $cidade = $_POST["cidade"];
         $estado = $_POST["estado"];
         $img = $_FILES['srcImg'];
-        $srcImg = "./img/imgAnuns/" + $img;
-
+        $srcImg = "./img/imgAnuns/" . $img["name"];
+        // movendo a foto para o diretorio;
+        move_uploaded_file($img["tmp_name"], $srcImg);
         try{
             $sql = <<<sql
                 SELECT idAnunciante FROM anunciante
@@ -56,8 +57,6 @@
             
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$srcImg, $idAnuncio]);
-            // movendo a foto para o diretorio;
-            move_uploaded_file($_FILES['tmp_name'], $img);
 
             //depois de realizar o INSERT, o php fará uma verificação se o endereço existe na baseEndAJAX
 

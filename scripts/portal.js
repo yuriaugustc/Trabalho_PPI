@@ -76,12 +76,12 @@ edit.addEventListener("click", () => {
 let criarAnuncio = document.getElementById("criarAnuncio");
 
 criarAnuncio.addEventListener("click", () => {
-    let form = document.querySelector("form");
-    let formEnv = new FormData(form[1]);
+    let form = document.getElementById("formAnun");
+    let formEnv = new FormData(form);
     
     const options = {
-        "method": "POST",
-        "body": formEnv
+        method: "POST",
+        body: formEnv
     }
     fetch("../portal/createAnun.php", options)
     alert("Anúncio Criado com Sucesso!");
@@ -95,9 +95,10 @@ cep.addEventListener("focusout", () => {
     fetch(`../portal/cep.php?cep=${cep.value}`)
     .then(response => response.json())
     .then(data => {
-        document.getElementById("bairro").value = data.bairro;
-        document.getElementById("cidade").value = data.cidade;
-        document.getElementById("esatdo").value = data.estado;
+        if(data.cidade != null)
+            document.getElementById("cidade").value = data.cidade;
+        if(data.estado != null)
+            document.getElementById("estado").value = data.estado;
     })
 });
 

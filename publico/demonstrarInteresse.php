@@ -9,7 +9,7 @@
     try{
         $sql =  <<<sql
             SELECT idAnuncio FROM anuncio
-                WHERE anuncio.titulo LIKE %?%
+                WHERE anuncio.titulo = ?
         sql;
 
         $stmt = $pdo->prepare($sql);
@@ -17,7 +17,7 @@
         $idAnuncio = $stmt->fetch();
 
         $sql = <<<sql
-            INSERT INTO interesse (idInteresse, mensagem, dataHora, contato, idAnuncio)
+            INSERT INTO interesse (mensagem, dataHora, contato, idAnuncio)
                 VALUES (?, now(), ?, ?)
         sql;
         $stmt = $pdo->prepare($sql);

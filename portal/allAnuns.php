@@ -4,9 +4,9 @@
     require "../conexaoMysql.php";
     $pdo = mysqlConnect();
 
-    require "getPerfil.php";
-    $anunciante = json_decode(getPerfil());
-    
+    session_start();
+    $email = $_SESSION["email"];
+
     $sql = <<<sql
         SELECT idAnunciante FROM anunciante
             WHERE anunciante.email = ?
@@ -14,17 +14,17 @@
 
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$anunciante["email"]]);
-        $rows = $stmt->fetch();
-        $id = $rows["idAnunciante"];
+        $stmt->execute(["email"]);
+        $row = $stmt->fetch();
+        $id = $row["idAnunciante"];
     }catch (Exception $ex) {
         exit('Ocorreu uma falha na conexão com o BD: ' . $ex->getMessage());
     }
 
     $sql = <<<sql
-        SELECT * FROM anuncio
-            WHERE anuncio.idAnunciante = ?
-            ORDER BY anuncio.dataHora DESC
+        SELECT * FROM anuncio a
+            WHERE a.idAnunciante = ?
+                ORDER BY a.dataHora DESC
     sql;
     
     try{
